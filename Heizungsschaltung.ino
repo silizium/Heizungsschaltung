@@ -63,8 +63,8 @@ TTSLed led3(TTSLED3);                       // instantiate an object of led3
 TTSLed led4(TTSLED4);                       // instantiate an object of led4
 TTSBuzzer buz;                              // instantiate an object of buzzer
 OneButton keyMode(TTSK3, true);
-TTSLight light;                             // instantiate an object of light sensor
-TTSTemp temp;                               // instantiate an object of temperature sensor
+//TTSLight light;                             // instantiate an object of light sensor
+TTSTemp temp1(A0), temp2(A1);                               // instantiate an object of temperature sensor
 TTSTime time;                               // instantiate an object of rtc
 
 
@@ -312,7 +312,7 @@ void parseLine(char *buffer){
           break;
         // Status
         case 'S':
-           char statusbuffer[40];
+           char statusbuffer[50];
            *statusbuffer = 0;
            for(byte i=0; i<4; i++){
               strcat(statusbuffer, "R");
@@ -325,8 +325,10 @@ void parseLine(char *buffer){
            i2str(statusbuffer+strlen(statusbuffer), now_hour,1); // 2 digits
            strcat(statusbuffer, ":");
            i2str(statusbuffer+strlen(statusbuffer), now_min,1);  // 2 digits
-           strcat(statusbuffer, " C=");
-           i2str(statusbuffer+strlen(statusbuffer), temp.get());
+           strcat(statusbuffer, " C(1)=");
+           i2str(statusbuffer+strlen(statusbuffer), temp1.get());
+           strcat(statusbuffer, " C(2)=");
+           i2str(statusbuffer+strlen(statusbuffer), temp2.get());
            if(*(tok1+1) != '=')
               Serial.println(statusbuffer);
            else{ //send as SMS
@@ -624,7 +626,7 @@ void displayState(){
     break;
   case ST_TEMP:
     keyMode.attachDoubleClick(setBrightness);
-    int temperature = temp.get();
+    int temperature = temp1.get();
     disp.temp(temperature);
     break;
   }

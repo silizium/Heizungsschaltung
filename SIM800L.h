@@ -48,7 +48,10 @@ char *strinsert(char *dst, char *src, int del=0){
 
 char *i2str(char *buf, int i, char leadingZ=0){
   byte l=0, pos=4;
-  if(i<0) buf[l++]='-';
+  if(i<0) {
+    buf[l++]='-';
+    i=-i;
+  }
   //if(i==0)
   //  buf[l++]='0';
   //else

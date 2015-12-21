@@ -23,7 +23,7 @@ Uses about 60% space on an ATmega328, but if you cut out the textmessages it can
 
 Menu:
 ```
-Arduino Home Automat V1.2.1
+Arduino Home Automat V1.2.2
   User: XXXXXX
     (CCBY) 2015 by Hanno Behrens
            https://plus.google.com/u/0/+HannoBehrens
