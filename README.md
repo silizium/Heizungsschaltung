@@ -23,7 +23,7 @@ Uses about 60% space on an ATmega328, but if you cut out the textmessages it can
 
 Menu:
 ```
-Arduino Home Automat V1.1
+Arduino Home Automat V1.2.1
   User: XXXXXX
     (CCBY) 2015 by Hanno Behrens
            https://plus.google.com/u/0/+HannoBehrens
@@ -47,6 +47,7 @@ Arduino Home Automat V1.1
    B       - baud rates
     S=rate -- serial
     F=rate -- fon
+   E=x     - echo on/off
    N       - subscriber numbers
     L[=0/1]-- list off/on
     A=num  -- add

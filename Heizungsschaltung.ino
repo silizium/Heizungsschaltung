@@ -216,12 +216,13 @@ int readline(int readch, char *buffer, int len)
 {
   static int pos = 0;
   int rpos;
-
+  
   if (readch > 0) {
+    if(config.echo) Serial.print((char)readch);
     switch (readch) {
-      case '\r': // Ignore CR
+      case '\n': // Ignore LF
         break;
-      case '\n': // Return on NL
+      case '\r': // Return on CR
         rpos = pos;
         pos = 0;  // Reset position index ready for next time
         return rpos;
@@ -305,7 +306,7 @@ void parseLine(char *buffer){
               Serial.print(F("DATE:"));Serial.println(sms->date);
               Serial.print(F("TEXT:"));Serial.println(sms->text);
               delete sms;
-            }else Serial.print(F("No SMS with that ID\n"));
+            }else Serial.print(F("No SMS with that ID\r\n"));
             //break;
           }
           break;
@@ -390,6 +391,13 @@ void parseLine(char *buffer){
              Serial.print(F("apn: "));
              Serial.println(config.apn);
              break;           
+           case 'E':
+             if(tok2){
+               config.echo=arg1;
+             }
+             Serial.print(F("echo: "));
+             Serial.println(config.echo);
+             break;
            case 'B':  //baud rates
               Serial.print(F("baudrate "));
               subcmd=toupper(*(tok1+2));
@@ -455,40 +463,41 @@ void parseLine(char *buffer){
           break;
          case 'H':
           Serial.print(F(
-            "\nArduino Home Automat " VERSION "\n"
+            "\nArduino Home Automat " VERSION "\r\n"
             "  User: "));
           Serial.println(config.username);
           Serial.println(F(
-            "    (CCBY) 2015 by Hanno Behrens\n"
-            "           behrens.hanno@gmail.com\n"
-            " Help\n"
-            "  Rx=1     set relais x 1=ON 0=OFF\n"
-            "  T=hh:mm  sets time\n"
-            "  Mx=y     SMS message number\n"
-            "   R=x,y   - read number, nochange\n"
-            "   L=y     - list y=types\n"
-            "   D=x,y   - delete number,classes\n"
-            "   F=x     - activate text format\n"
-            "  ^x       - control sequence ^A..^Z\n"
-            "  Cxx      config\n"
-            "   L       - load\n"
-            "   S       - store\n"
-            "   F       - factory reset\n"
-            "   U       - username\n"
-            "   P       - pin\n"
-            "   A       - APN\n"
-            "   R       - store relais defaults\n"
-            "   B       - baud rates\n"
-            "    S=rate -- serial\n"
-            "    F=rate -- fon\n"
-            "   N       - subscriber numbers\n"
-            "    L[=0/1]-- list off/on\n"
-            "    A=num  -- add\n"
-            "    D=idx  -- del\n" 
-            "  S[=n]    status if n is '*' send SMS back or\n"
-            "           send to a valid cellphone number\n"
-            "  H        this help\n"
-            "READY.\n")
+            "    (CCBY) 2015 by Hanno Behrens\r\n"
+            "           behrens.hanno@gmail.com\r\n"
+            " Help\r\n"
+            "  Rx=1     set relais x 1=ON 0=OFF\r\n"
+            "  T=hh:mm  sets time\r\n"
+            "  Mx=y     SMS message number\r\n"
+            "   R=x,y   - read number, nochange\r\n"
+            "   L=y     - list y=types\r\n"
+            "   D=x,y   - delete number,classes\r\n"
+            "   F=x     - activate text format\r\n"
+            "  ^x       - control sequence ^A..^Z\r\n"
+            "  Cxx      config\r\n"
+            "   L       - load\r\n"
+            "   S       - store\r\n"
+            "   F       - factory reset\r\n"
+            "   U       - username\r\n"
+            "   P       - pin\r\n"
+            "   A       - APN\r\n"
+            "   R       - store relais defaults\r\n"
+            "   B       - baud rates\r\n"
+            "    S=rate -- serial\r\n"
+            "    F=rate -- fon\r\n"
+            "   E=x     - echo on/off\r\n"
+            "   N       - subscriber numbers\r\n"
+            "    L[=0/1]-- list off/on\r\n"
+            "    A=num  -- add\r\n"
+            "    D=idx  -- del\r\n" 
+            "  S[=n]    status if n is '*' send SMS back or\r\n"
+            "           send to a valid cellphone number\r\n"
+            "  H        this help\r\n"
+            "READY.\r\n")
             );
         default:
         break;

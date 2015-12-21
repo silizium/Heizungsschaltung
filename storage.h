@@ -17,6 +17,7 @@ class Storage {
     boolean relais[4];            //relais defaults
     boolean enableSubscriber;
     char    subscriber[MAX_SUBSCRIBERS][21];   //10 numbers may subscribe and can get permit
+    boolean echo;
 
     Storage(): version(1) {}
 
@@ -31,6 +32,7 @@ class Storage {
         //default values
         serialBaud=57600;
         fonBaud=57600;
+        echo=true;
         strcpy(username, "Gerd");
         pin=1111;
         strcpy(apn, "pinternet.interkom.de");
