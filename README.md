@@ -47,6 +47,7 @@ Arduino Home Automat V1.1
    B       - baud rates
     S=rate -- serial
     F=rate -- fon
+   E=x     - echo on/off
    N       - subscriber numbers
     L[=0/1]-- list off/on
     A=num  -- add
