@@ -11,7 +11,7 @@ class Storage {
     byte    version;
     int32_t serialBaud;
     int32_t fonBaud;
-    char    username[21];         //Gerhard Hinz
+    char    username[21];         //some name
     short   pin;                  //1111
     char    apn[40];              //pinternet.interkom.de
     boolean relais[4];            //relais defaults
@@ -31,13 +31,10 @@ class Storage {
         //default values
         serialBaud=57600;
         fonBaud=57600;
-        strcpy(username, "Gerhard");
-        pin = 1111;
+        strcpy(username, "Gerd");
+        pin=1111;
         strcpy(apn, "pinternet.interkom.de");
-        enableSubscriber = true;
-        strcpy(subscriber[0], "+4915157312058");
-        strcpy(subscriber[1], "+4917690726378");
-        strcpy(subscriber[2], "+4917648164144");
+        enableSubscriber = false;
       } else
         for (unsigned int mem = 0; mem < EEPROM.length() && mem < sizeof(Storage); mem++) {
           *(((byte *)this) + mem) = (uint8_t) EEPROM[mem];

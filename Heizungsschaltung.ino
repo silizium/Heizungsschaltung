@@ -1,12 +1,17 @@
 /*********************************************************************************************************
-*  Tick Tock Shield Advanced Lesson 4: SetTime
+*  Heizungssteuerung
 *  
-*  When in ST_TIME. press keyUp will display the value of light sensor, while press keyDown will display
-*  value of temperature. 
+*  Uses:
+*  Arduino UNO (Atmega328)
+*  4 Relais board
+*  Clock Shield (Tick Tock board) / with only 1 button
+*  SIM800L sim/gprs/sms 
+*  4V adjustable voltage regulator for driving the SIM800
+*  external 6V power supply
 *
-*
-*  Author: Loovee
-*  2013-11-29
+*  Author: Hanno Behrens
+*  https://plus.google.com/u/0/+HannoBehrens
+*  2015-12-20
 *********************************************************************************************************/
 
 #include <Wire.h>
@@ -27,7 +32,7 @@
 #include "SIM800L.h"
 #include "storage.h"
 
-
+#define VERSION "V1.2"
 
 // STATE define here
 enum{
@@ -450,7 +455,7 @@ void parseLine(char *buffer){
           break;
          case 'H':
           Serial.print(F(
-            "\nArduino Home Automat V1.1\n"
+            "\nArduino Home Automat " VERSION "\n"
             "  User: "));
           Serial.println(config.username);
           Serial.println(F(
