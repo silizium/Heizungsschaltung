@@ -52,7 +52,8 @@ Arduino Home Automat V1.2.2
     L[=0/1]-- list off/on
     A=num  -- add
     D=idx  -- del
-  S        status
+  S[=n]    status if n is '*' send SMS back or
+           send to a valid cellphone number
   H        this help
 READY.
 ```

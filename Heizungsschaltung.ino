@@ -470,7 +470,7 @@ void parseLine(char *buffer){
           Serial.println(config.username);
           Serial.println(F(
             "    (CCBY) 2015 by Hanno Behrens\r\n"
-            "           behrens.hanno@gmail.com\r\n"
+            "           https://plus.google.com/u/0/+HannoBehrens\r\n"
             " Help\r\n"
             "  Rx=1     set relais x 1=ON 0=OFF\r\n"
             "  T=hh:mm  sets time\r\n"
